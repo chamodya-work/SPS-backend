@@ -1,6 +1,7 @@
 package com.example.SPSProjectBackend.service;
 
 import com.example.SPSProjectBackend.dto.ApplicationDTO;
+import com.example.SPSProjectBackend.dto.ApplicationDetailsDTO;
 import com.example.SPSProjectBackend.dto.ApplicationTypeDto;
 import com.example.SPSProjectBackend.model.ApplicationModel;
 import com.example.SPSProjectBackend.model.ApplicationModelId;
@@ -33,7 +34,7 @@ public class ApplicationService {
         ApplicationModel application = new ApplicationModel();
         ApplicationModelId id = new ApplicationModelId();
         id.setApplicationId(applicationDTO.getApplicationId());
-        //id.setDeptId(applicationDTO.getDeptId());
+        // id.setDeptId(applicationDTO.getDeptId());
         application.setId(id);
         application.setApplicationNo(applicationDTO.getApplicationNo());
         application.setApplicationType(applicationDTO.getApplicationType());
@@ -47,7 +48,7 @@ public class ApplicationService {
         application.setAddUser(sessionUsername);
         application.setUpdUser(sessionUsername);
 
-        //application.setPreparedBy(applicationDTO.getPreparedBy());
+        // application.setPreparedBy(applicationDTO.getPreparedBy());
         application.setConfirmedBy(applicationDTO.getConfirmedBy());
         application.setConfirmedDate(applicationDTO.getConfirmedDate());
         application.setConfirmedTime(applicationDTO.getConfirmedTime());
@@ -56,10 +57,10 @@ public class ApplicationService {
         application.setAllocatedDate(applicationDTO.getAllocatedDate());
         application.setAllocatedTime(applicationDTO.getAllocatedTime());
         application.setStatus(applicationDTO.getStatus());
-        //application.setAddUser(applicationDTO.getAddUser());
+        // application.setAddUser(applicationDTO.getAddUser());
         application.setAddDate(applicationDTO.getAddDate());
         application.setAddTime(applicationDTO.getAddTime());
-        //application.setUpdUser(applicationDTO.getUpdUser());
+        // application.setUpdUser(applicationDTO.getUpdUser());
         application.setUpdDate(applicationDTO.getUpdDate());
         application.setUpdTime(applicationDTO.getUpdTime());
         application.setDescription(applicationDTO.getDescription());
@@ -93,58 +94,97 @@ public class ApplicationService {
         return applicationRepository.findById_ApplicationId(applicationId);
     }
 
-    public ApplicationModel updateApplication(String applicationId, ApplicationDTO applicationDTO, String sessionUsername) {
+    public ApplicationModel updateApplication(String applicationId, ApplicationDTO applicationDTO,
+            String sessionUsername) {
         Optional<ApplicationModel> optionalApplication = applicationRepository.findById_ApplicationId(applicationId);
 
         if (optionalApplication.isPresent()) {
             ApplicationModel application = optionalApplication.get();
 
             // Update only non-null fields
-            if (applicationDTO.getApplicationNo() != null) application.setApplicationNo(applicationDTO.getApplicationNo());
-            if (applicationDTO.getApplicationType() != null) application.setApplicationType(applicationDTO.getApplicationType());
-            if (applicationDTO.getApplicationSubType() != null) application.setApplicationSubType(applicationDTO.getApplicationSubType());
-            if (applicationDTO.getSubmitDate() != null) application.setSubmitDate(applicationDTO.getSubmitDate());
-            if (applicationDTO.getIdNo() != null) application.setIdNo(applicationDTO.getIdNo());
+            if (applicationDTO.getApplicationNo() != null)
+                application.setApplicationNo(applicationDTO.getApplicationNo());
+            if (applicationDTO.getApplicationType() != null)
+                application.setApplicationType(applicationDTO.getApplicationType());
+            if (applicationDTO.getApplicationSubType() != null)
+                application.setApplicationSubType(applicationDTO.getApplicationSubType());
+            if (applicationDTO.getSubmitDate() != null)
+                application.setSubmitDate(applicationDTO.getSubmitDate());
+            if (applicationDTO.getIdNo() != null)
+                application.setIdNo(applicationDTO.getIdNo());
 
             // Use session username for tracking
             application.setDeptId((String) session.getAttribute("deptId"));
             application.setPreparedBy(sessionUsername);
             application.setUpdUser(sessionUsername);
 
-            if (applicationDTO.getConfirmedBy() != null) application.setConfirmedBy(applicationDTO.getConfirmedBy());
-            if (applicationDTO.getConfirmedDate() != null) application.setConfirmedDate(applicationDTO.getConfirmedDate());
-            if (applicationDTO.getConfirmedTime() != null) application.setConfirmedTime(applicationDTO.getConfirmedTime());
-            if (applicationDTO.getAllocatedTo() != null) application.setAllocatedTo(applicationDTO.getAllocatedTo());
-            if (applicationDTO.getAllocatedBy() != null) application.setAllocatedBy(applicationDTO.getAllocatedBy());
-            if (applicationDTO.getAllocatedDate() != null) application.setAllocatedDate(applicationDTO.getAllocatedDate());
-            if (applicationDTO.getAllocatedTime() != null) application.setAllocatedTime(applicationDTO.getAllocatedTime());
-            if (applicationDTO.getStatus() != null) application.setStatus(applicationDTO.getStatus());
+            if (applicationDTO.getConfirmedBy() != null)
+                application.setConfirmedBy(applicationDTO.getConfirmedBy());
+            if (applicationDTO.getConfirmedDate() != null)
+                application.setConfirmedDate(applicationDTO.getConfirmedDate());
+            if (applicationDTO.getConfirmedTime() != null)
+                application.setConfirmedTime(applicationDTO.getConfirmedTime());
+            if (applicationDTO.getAllocatedTo() != null)
+                application.setAllocatedTo(applicationDTO.getAllocatedTo());
+            if (applicationDTO.getAllocatedBy() != null)
+                application.setAllocatedBy(applicationDTO.getAllocatedBy());
+            if (applicationDTO.getAllocatedDate() != null)
+                application.setAllocatedDate(applicationDTO.getAllocatedDate());
+            if (applicationDTO.getAllocatedTime() != null)
+                application.setAllocatedTime(applicationDTO.getAllocatedTime());
+            if (applicationDTO.getStatus() != null)
+                application.setStatus(applicationDTO.getStatus());
 
-            if (applicationDTO.getUpdDate() != null) application.setUpdDate(applicationDTO.getUpdDate());
-            if (applicationDTO.getUpdTime() != null) application.setUpdTime(applicationDTO.getUpdTime());
-            if (applicationDTO.getDescription() != null) application.setDescription(applicationDTO.getDescription());
-            if (applicationDTO.getFromDate() != null) application.setFromDate(applicationDTO.getFromDate());
-            if (applicationDTO.getToDate() != null) application.setToDate(applicationDTO.getToDate());
-            if (applicationDTO.getDurationInDays() != null) application.setDurationInDays(applicationDTO.getDurationInDays());
-            if (applicationDTO.getDurationType() != null) application.setDurationType(applicationDTO.getDurationType());
-            if (applicationDTO.getDuration() != null) application.setDuration(applicationDTO.getDuration());
-            if (applicationDTO.getDisconnectedWithin() != null) application.setDisconnectedWithin(applicationDTO.getDisconnectedWithin());
-            if (applicationDTO.getFinalizedWithin() != null) application.setFinalizedWithin(applicationDTO.getFinalizedWithin());
-            if (applicationDTO.getIsLoanApp() != null) application.setIsLoanApp(applicationDTO.getIsLoanApp());
-            if (applicationDTO.getIsVisitngNeeded() != null) application.setIsVisitngNeeded(applicationDTO.getIsVisitngNeeded());
-            if (applicationDTO.getSamurdhiMember() != null) application.setSamurdhiMember(applicationDTO.getSamurdhiMember());
-            if (applicationDTO.getContactIdNo() != null) application.setContactIdNo(applicationDTO.getContactIdNo());
-            if (applicationDTO.getContactName() != null) application.setContactName(applicationDTO.getContactName());
-            if (applicationDTO.getContactAddress() != null) application.setContactAddress(applicationDTO.getContactAddress());
-            if (applicationDTO.getContactTelephone() != null) application.setContactTelephone(applicationDTO.getContactTelephone());
-            if (applicationDTO.getContactMobile() != null) application.setContactMobile(applicationDTO.getContactMobile());
-            if (applicationDTO.getContactEmail() != null) application.setContactEmail(applicationDTO.getContactEmail());
-            if (applicationDTO.getIsPiv1Needed() != null) application.setIsPiv1Needed(applicationDTO.getIsPiv1Needed());
-            if (applicationDTO.getLinkedWith() != null) application.setLinkedWith(applicationDTO.getLinkedWith());
-            if (applicationDTO.getApplicableStdYear() != null) application.setApplicableStdYear(applicationDTO.getApplicableStdYear());
-            if (applicationDTO.getIsTariffChange() != null) application.setIsTariffChange(applicationDTO.getIsTariffChange());
-            if (applicationDTO.getIsSequenceChange() != null) application.setIsSequenceChange(applicationDTO.getIsSequenceChange());
-            if (applicationDTO.getExistTariff() != null) application.setExistTariff(applicationDTO.getExistTariff());
+            if (applicationDTO.getUpdDate() != null)
+                application.setUpdDate(applicationDTO.getUpdDate());
+            if (applicationDTO.getUpdTime() != null)
+                application.setUpdTime(applicationDTO.getUpdTime());
+            if (applicationDTO.getDescription() != null)
+                application.setDescription(applicationDTO.getDescription());
+            if (applicationDTO.getFromDate() != null)
+                application.setFromDate(applicationDTO.getFromDate());
+            if (applicationDTO.getToDate() != null)
+                application.setToDate(applicationDTO.getToDate());
+            if (applicationDTO.getDurationInDays() != null)
+                application.setDurationInDays(applicationDTO.getDurationInDays());
+            if (applicationDTO.getDurationType() != null)
+                application.setDurationType(applicationDTO.getDurationType());
+            if (applicationDTO.getDuration() != null)
+                application.setDuration(applicationDTO.getDuration());
+            if (applicationDTO.getDisconnectedWithin() != null)
+                application.setDisconnectedWithin(applicationDTO.getDisconnectedWithin());
+            if (applicationDTO.getFinalizedWithin() != null)
+                application.setFinalizedWithin(applicationDTO.getFinalizedWithin());
+            if (applicationDTO.getIsLoanApp() != null)
+                application.setIsLoanApp(applicationDTO.getIsLoanApp());
+            if (applicationDTO.getIsVisitngNeeded() != null)
+                application.setIsVisitngNeeded(applicationDTO.getIsVisitngNeeded());
+            if (applicationDTO.getSamurdhiMember() != null)
+                application.setSamurdhiMember(applicationDTO.getSamurdhiMember());
+            if (applicationDTO.getContactIdNo() != null)
+                application.setContactIdNo(applicationDTO.getContactIdNo());
+            if (applicationDTO.getContactName() != null)
+                application.setContactName(applicationDTO.getContactName());
+            if (applicationDTO.getContactAddress() != null)
+                application.setContactAddress(applicationDTO.getContactAddress());
+            if (applicationDTO.getContactTelephone() != null)
+                application.setContactTelephone(applicationDTO.getContactTelephone());
+            if (applicationDTO.getContactMobile() != null)
+                application.setContactMobile(applicationDTO.getContactMobile());
+            if (applicationDTO.getContactEmail() != null)
+                application.setContactEmail(applicationDTO.getContactEmail());
+            if (applicationDTO.getIsPiv1Needed() != null)
+                application.setIsPiv1Needed(applicationDTO.getIsPiv1Needed());
+            if (applicationDTO.getLinkedWith() != null)
+                application.setLinkedWith(applicationDTO.getLinkedWith());
+            if (applicationDTO.getApplicableStdYear() != null)
+                application.setApplicableStdYear(applicationDTO.getApplicableStdYear());
+            if (applicationDTO.getIsTariffChange() != null)
+                application.setIsTariffChange(applicationDTO.getIsTariffChange());
+            if (applicationDTO.getIsSequenceChange() != null)
+                application.setIsSequenceChange(applicationDTO.getIsSequenceChange());
+            if (applicationDTO.getExistTariff() != null)
+                application.setExistTariff(applicationDTO.getExistTariff());
 
             return applicationRepository.save(application);
         } else {
@@ -174,8 +214,48 @@ public class ApplicationService {
         return summary;
     }
 
-    //this one for application in commission part
+    // this one for application in commission part
     // ApplicationService.java
+    // public List<ApplicationModel> getApplicationsForEstimate(String estimateNo) {
+    // // Get raw department IDs
+    // List<String> deptIds =
+    // pcesthmtRepository.findDeptIdsByEstimateNo(estimateNo);
+    //
+    // // Trim and format department IDs
+    // List<String> formattedDeptIds = deptIds.stream()
+    // .map(String::trim)
+    // .collect(Collectors.toList());
+    //
+    // return applicationRepository.findByDeptIdIn(formattedDeptIds);
+    // }
+    // Replace the existing getApplicationDetailsByEstimate method in
+    // ApplicationService.java with this:
+
+    public List<ApplicationDetailsDTO> getApplicationDetailsByEstimate(String estimateNo) {
+        try {
+            System.out.println("Fetching details for estimate: " + estimateNo);
+            List<Object[]> results = applicationRepository.findApplicationDetailsByEstimateNo(estimateNo);
+            System.out.println("Query returned " + results.size() + " results");
+
+            return results.stream()
+                    .map(result -> {
+                        try {
+                            return new ApplicationDetailsDTO(result);
+                        } catch (Exception e) {
+                            System.err.println("Error mapping result: " + Arrays.toString(result));
+                            e.printStackTrace();
+                            return null;
+                        }
+                    })
+                    .filter(Objects::nonNull)
+                    .collect(Collectors.toList());
+        } catch (Exception e) {
+            System.err.println("Error in getApplicationDetailsByEstimate for estimateNo: " + estimateNo);
+            e.printStackTrace();
+            throw new RuntimeException("Failed to fetch application details", e);
+        }
+    }
+
     public List<ApplicationModel> getApplicationsForEstimate(String estimateNo) {
         // Get raw department IDs
         List<String> deptIds = pcesthmtRepository.findDeptIdsByEstimateNo(estimateNo);

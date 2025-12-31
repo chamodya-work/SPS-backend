@@ -12,23 +12,30 @@ import java.util.stream.Collectors;
 @Service
 public class PivDetailService {
 
-    private final PivDetailRepository pivDetailRepository;
+        private final PivDetailRepository pivDetailRepository;
 
-    @Autowired
-    public PivDetailService(PivDetailRepository pivDetailRepository) {
-        this.pivDetailRepository = pivDetailRepository;
-    }
+        @Autowired
+        public PivDetailService(PivDetailRepository pivDetailRepository) {
+                this.pivDetailRepository = pivDetailRepository;
+        }
 
-    public List<PivDetailDto> getPivDetailsForEstimate(String estimateNo) {
-        return pivDetailRepository.findByEstReferenceNo(estimateNo)
-                .stream()
-                .map(piv -> new PivDetailDto(
-                        piv.getId().getPivNo(),
-                        piv.getId().getDeptId(),
-                        piv.getPivAmount(),
-                        piv.getPaymentMode(),
-                        piv.getStatus()
-                ))
-                .collect(Collectors.toList());
-    }
+        public List<PivDetailDto> getPivDetailsForEstimate(String estimateNo) {
+                // Clean up the estimate number
+                String cleanedEstimateNo = estimateNo.trim();
+
+                List<PivDetail> pivDetails = pivDetailRepository.findByEstimateNo(cleanedEstimateNo);
+
+                return pivDetails.stream()
+                                .map(piv -> new PivDetailDto(
+                                                piv.getId().getPivNo(),
+                                                piv.getId().getDeptId(),
+                                                piv.getPivAmount(),
+                                                piv.getPaymentMode(),
+                                                piv.getStatus(),
+                                                piv.getReferenceType(),
+                                                piv.getSerConnOrElecSch(),
+                                                piv.getSecurityDeposit(),
+                                                piv.getPivDate()))
+                                .collect(Collectors.toList());
+        }
 }

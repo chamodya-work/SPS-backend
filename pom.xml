@@ -28,7 +28,7 @@
 		<url/>
 	</scm>
 	<properties>
-		<java.version>21</java.version>
+		<java.version>17</java.version>
 		<maven.compiler.source>23</maven.compiler.source>
 		<maven.compiler.target>23</maven.compiler.target>
 	</properties>
@@ -123,6 +123,8 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-mail</artifactId>
 		</dependency>
+<!--		commented the all redis file because iwant to checck test database and live database-->
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-redis</artifactId>
@@ -153,6 +155,13 @@
 			<scope>provided</scope>
 		</dependency>
 
+<!--		This dependency for swagger-->
+		<dependency>
+			<groupId>org.springdoc</groupId>
+			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
+			<version>2.6.0</version>
+		</dependency>
+
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter</artifactId>
@@ -168,7 +177,7 @@
 	</dependencies>
 
 	<build>
-		<finalName>SPS</finalName>
+		<finalName>SPSNEW</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

@@ -41,4 +41,3 @@ public class StandardRatesController {
         service.delete(id);
     }
 }
-

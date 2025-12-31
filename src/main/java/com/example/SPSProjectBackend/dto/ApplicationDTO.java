@@ -38,7 +38,9 @@ public class ApplicationDTO {
     private Short duration;
     private Short disconnectedWithin;
     private Short finalizedWithin;
-    private Boolean isLoanApp;
+    // private Boolean isLoanApp;
+    private String isLoanApp;
+    // private Boolean isLoanApp;
     private Boolean isVisitngNeeded;
     private String samurdhiMember;
     private String contactIdNo;

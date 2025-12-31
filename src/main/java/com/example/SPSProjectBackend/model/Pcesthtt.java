@@ -1,5 +1,13 @@
 package com.example.SPSProjectBackend.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.EmbeddedId;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.time.LocalDate;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -21,6 +29,8 @@ public class Pcesthtt {
     @Column(name = "CAT_CD", length = 20)
     private String catCd;
 
+    @Column(name = "PARTIAL_PMT")
+    private Boolean partialPmt;
     @Column(name = "PARTIAL_PMT", length = 255)
     private String partialPmt;
 
@@ -36,6 +46,8 @@ public class Pcesthtt {
     @Column(name = "TAX_AMT")
     private Long taxAmt;
 
+    @Column(name = "SUB_CONT")
+    private Boolean subCont;
     @Column(name = "SUB_CONT", length = 255)
     private String subCont;
 
@@ -79,6 +91,7 @@ public class Pcesthtt {
     private String label10;
 
     @Column(name = "ETIMATE_DT", nullable = false)
+    private LocalDate etimateDt;
     private LocalDateTime etimateDt;
 
     @Column(name = "ACTUAL_UNITS")
@@ -93,6 +106,8 @@ public class Pcesthtt {
     @Column(name = "STD_COST")
     private Long stdCost;
 
+    @Column(name = "CONTROLLED")
+    private Boolean controlled;
     @Column(name = "CONTROLLED", length = 255)
     private String controlled;
 
@@ -100,6 +115,7 @@ public class Pcesthtt {
     private String clientNm;
 
     @Column(name = "PRIORITY")
+    private Boolean priority;
     private Long priority;
 
     @Column(name = "CUST_CONTRIB")
@@ -121,6 +137,13 @@ public class Pcesthtt {
     private Long allocSettle;
 
     @Column(name = "NORM_DEFAULT")
+    private Boolean normDefault;
+
+    @Column(name = "STATUS")
+    private Short status;
+
+    @Column(name = "LOG_ID")
+    private Integer logId;
     private Long normDefault;
 
     @Column(name = "STATUS")
@@ -133,48 +156,56 @@ public class Pcesthtt {
     private String entBy;
 
     @Column(name = "ENT_DT", nullable = false)
+    private LocalDate entDt;
     private LocalDateTime entDt;
 
     @Column(name = "CONF_BY", length = 12)
     private String confBy;
 
     @Column(name = "CONF_DT", nullable = false)
+    private LocalDate confDt;
     private LocalDateTime confDt;
 
     @Column(name = "APR_UID1", length = 12)
     private String aprUid1;
 
     @Column(name = "APR_DT1", nullable = false)
+    private LocalDate aprDt1;
     private LocalDateTime aprDt1;
 
     @Column(name = "APR_UID2", length = 12)
     private String aprUid2;
 
     @Column(name = "APR_DT2", nullable = false)
+    private LocalDate aprDt2;
     private LocalDateTime aprDt2;
 
     @Column(name = "APR_UID3", length = 12)
     private String aprUid3;
 
     @Column(name = "APR_DT3", nullable = false)
+    private LocalDate aprDt3;
     private LocalDateTime aprDt3;
 
     @Column(name = "APR_UID4", length = 12)
     private String aprUid4;
 
     @Column(name = "APR_DT4", nullable = false)
+    private LocalDate aprDt4;
     private LocalDateTime aprDt4;
 
     @Column(name = "APR_UID5", length = 12)
     private String aprUid5;
 
     @Column(name = "APR_DT5", nullable = false)
+    private LocalDate aprDt5;
     private LocalDateTime aprDt5;
 
     @Column(name = "REJCT_UID", length = 12)
     private String rejctUid;
 
     @Column(name = "REJCT_DT", nullable = false)
+    private LocalDate rejctDt;
     private LocalDateTime rejctDt;
 
     @Column(name = "REVISE_EST")
@@ -187,6 +218,7 @@ public class Pcesthtt {
     private String reviseUid;
 
     @Column(name = "REVISE_DT", nullable = false)
+    private LocalDate reviseDt;
     private LocalDateTime reviseDt;
 
     @Column(name = "REV_REASON", length = 300)
@@ -196,6 +228,7 @@ public class Pcesthtt {
     private String descr;
 
     @Column(name = "PRJ_ASS_DT")
+    private LocalDate prjAssDt;
     private LocalDateTime prjAssDt;
 
     @Column(name = "REJECT_REASON", length = 800)
@@ -218,4 +251,5 @@ public class Pcesthtt {
 
     @Column(name = "SEC_DEP_YEAR", length = 6)
     private String secDepYear;
+
 }

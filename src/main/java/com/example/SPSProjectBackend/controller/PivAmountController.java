@@ -9,7 +9,8 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-//@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = "http://localhost:3000")
+// @CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/api/piv-amounts")
 public class PivAmountController {
 
@@ -18,8 +19,8 @@ public class PivAmountController {
 
     @GetMapping("/{deptId}/{pivNo}/{accountCode}")
     public Optional<PivAmount> getPivAmount(@PathVariable String deptId,
-                                            @PathVariable String pivNo,
-                                            @PathVariable String accountCode) {
+            @PathVariable String pivNo,
+            @PathVariable String accountCode) {
         PivAmountId id = new PivAmountId();
         id.setDeptId(deptId);
         id.setPivNo(pivNo);
@@ -47,8 +48,8 @@ public class PivAmountController {
 
     @DeleteMapping("/{deptId}/{pivNo}/{accountCode}")
     public void deletePivAmount(@PathVariable String deptId,
-                                @PathVariable String pivNo,
-                                @PathVariable String accountCode) {
+            @PathVariable String pivNo,
+            @PathVariable String accountCode) {
         PivAmountId id = new PivAmountId();
         id.setDeptId(deptId);
         id.setPivNo(pivNo);

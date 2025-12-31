@@ -1,6 +1,5 @@
 package com.example.SPSProjectBackend.model;
 
-
 import jakarta.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
@@ -13,7 +12,8 @@ public class DeptTypeMenuId implements Serializable {
     @Column(name = "MENU_CODE", length = 20)
     private String menuCode;
 
-    public DeptTypeMenuId() {}
+    public DeptTypeMenuId() {
+    }
 
     public DeptTypeMenuId(String deptTypeCode, String menuCode) {
         this.deptTypeCode = deptTypeCode;
@@ -22,8 +22,10 @@ public class DeptTypeMenuId implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof DeptTypeMenuId)) return false;
+        if (this == o)
+            return true;
+        if (!(o instanceof DeptTypeMenuId))
+            return false;
         DeptTypeMenuId that = (DeptTypeMenuId) o;
         return Objects.equals(deptTypeCode, that.deptTypeCode) &&
                 Objects.equals(menuCode, that.menuCode);
@@ -34,9 +36,13 @@ public class DeptTypeMenuId implements Serializable {
         return Objects.hash(deptTypeCode, menuCode);
     }
 
-    public String getDeptTypeCode() { return deptTypeCode; }
+    public String getDeptTypeCode() {
+        return deptTypeCode;
+    }
 
-    public void setDeptTypeCode(String deptTypeCode) { this.deptTypeCode = deptTypeCode; }
+    public void setDeptTypeCode(String deptTypeCode) {
+        this.deptTypeCode = deptTypeCode;
+    }
 
     public String getMenuCode() {
         return menuCode;

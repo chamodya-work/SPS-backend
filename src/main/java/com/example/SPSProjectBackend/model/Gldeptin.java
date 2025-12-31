@@ -1,5 +1,14 @@
 package com.example.SPSProjectBackend.model;
 
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.math.BigDecimal;
+
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -9,6 +18,9 @@ import lombok.Setter;
 @Entity
 @Table(name = "GLDEPTIN")
 public class Gldeptin {
+
+    @Id
+    @Column(name = "DEPT_ID", length = 6)
     @Id
     @Column(name = "DEPT_ID", nullable = false, length = 6)
     private String deptId;
@@ -40,11 +52,16 @@ public class Gldeptin {
     @Column(name = "BULK_SUPPLIER_ADD", length = 200)
     private String bulkSupplierAdd;
 
+    @Column(name = "BULK_SUPPLIER_TEL")
+    private BigDecimal bulkSupplierTel;  // Adjusted to BigDecimal as per table (decimal(10))
     @Column(name = "BULK_SUPPLIER_TEL", precision = 10, scale = 0)
     private Long bulkSupplierTel;
 
     @Column(name = "BRANCH_CODE", length = 3)
     private String branchCode;
+
+    @Column(name = "BANK_CODE", length = 4)
+    private String bankCode;
 
     @Column(name = "POS_CENTER", length = 6)
     private String posCenter;
@@ -65,6 +82,7 @@ public class Gldeptin {
     private String emailNo;
 
     @Column(name = "IS_PIV1_NEEDED_DEFAULT", length = 1)
+    private Character isPiv1NeededDefault;
     private String isPiv1NeededDefault;
 
     @Column(name = "ES_MOBILE", length = 10)
@@ -72,6 +90,7 @@ public class Gldeptin {
 
     @Column(name = "AREA_CODE", length = 3)
     private String areaCode;
+}
 
     // Foreign key to BRANCH
     @ManyToOne

@@ -1,28 +1,80 @@
 package com.example.SPSProjectBackend.repository;
 
-import com.example.SPSProjectBackend.dto.AreaDto;
-import com.example.SPSProjectBackend.dto.DepotDto;
+import com.example.SPSProjectBackend.dto.AreaCodeDTO;
 import com.example.SPSProjectBackend.model.Gldeptin;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import java.util.List;
+import org.springframework.stereotype.Repository;
 
+@Repository
 public interface GldeptinRepository extends JpaRepository<Gldeptin, String> {
 
-    @Query("SELECT new com.example.SPSProjectBackend.dto.AreaDto(d.deptId, d.deptArea) FROM Gldeptin d WHERE d.deptType = 'AREA' ORDER BY d.deptArea")
-    List<AreaDto> findAreaDepartmentsAsDto();
+    // @Query(value = """
+    // SELECT g.AREA_CODE
+    // FROM GLDEPTIN g
+    // WHERE g.DEPT_ID = (
+    // SELECT w.AREA_CODE
+    // FROM WIRING_LAND_DETAIL_CON w
+    // WHERE w.APPLICATION_ID = TRIM(:applicationId)
+    // )
+    // AND g.DEPT_TYPE = 'AREA'
+    // AND ROWNUM = 1
+    // """, nativeQuery = true)
 
-    @Query("SELECT NEW com.example.SPSProjectBackend.dto.DepotDto(d.deptId, d.deptFullName) " +
-            "FROM Gldeptin d " +
-            "WHERE d.deptType = 'DEPOT' " +
-            "AND SUBSTRING(d.deptId, 1, 3) = SUBSTRING(:prefix,1,3) " +
-            "ORDER BY d.deptFullName")
-    List<DepotDto> findDepotDepartments(@Param("prefix") String deptId);
+    // @Query(value = """
+    // SELECT g.AREA_CODE
+    // FROM GLDEPTIN g
+    // WHERE g.DEPT_ID = (
+    // SELECT w.AREA_CODE
+    // FROM WIRING_LAND_DETAIL_CON w
+    // WHERE w.APPLICATION_ID = (
+    // SELECT a.APPLICATION_ID
+    // FROM APPLICATIONS a
+    // WHERE TRIM(a.APPLICATION_NO) = TRIM(:applicationNo)
+    // )
+    // )
+    // AND g.DEPT_TYPE = 'AREA'
+    // AND ROWNUM = 1
+    // """, nativeQuery = true)
 
-    List<Gldeptin> findByDeptAreaIgnoreCase(String deptArea);
+    @Query(value = """
+                SELECT g.AREA_CODE as areaCode, g.DEPT_CODE as deptCode
+                FROM GLDEPTIN g
+                WHERE g.DEPT_ID = (
+                    SELECT w.AREA_CODE
+                    FROM WIRING_LAND_DETAIL_CON w
+                    WHERE w.APPLICATION_ID = TRIM(:applicationId)
+                )
+                AND g.DEPT_TYPE = 'AREA'
+                AND ROWNUM = 1
+            """, nativeQuery = true)
+    AreaCodeDTO findAreaCodeByApplicationId(@Param("applicationId") String applicationId);
 
     // Trim deptId and substring rptUser to handle CHAR padding
     @Query("SELECT g.deptId FROM Gldeptin g WHERE TRIM(g.deptId) = TRIM(SUBSTRING(:rptUser, 1, 6))")
     String findDeptIdByRptUser(@Param("rptUser") String rptUser);
+
+    // Add this method to GldeptinRepository.java
+    @Query("SELECT g.deptType FROM Gldeptin g WHERE TRIM(g.deptId) = TRIM(:deptId)")
+    String findDeptTypeByDeptId(@Param("deptId") String deptId);
+
 }
+
+// @Repository
+// public interface GldeptinRepository extends JpaRepository<Gldeptin, String> {
+//
+// @Query(value = """
+// SELECT g.AREA_CODE, g.DEPT_CODE
+// FROM GLDEPTIN g
+// WHERE g.DEPT_ID = (
+// SELECT w.AREA_CODE
+// FROM WIRING_LAND_DETAIL_CON w
+// WHERE w.APPLICATION_ID = TRIM(:applicationId)
+// )
+// AND g.DEPT_TYPE = 'AREA'
+// AND ROWNUM = 1
+// """, nativeQuery = true)
+// Object[] findAreaCodeByApplicationId(@Param("applicationId") String
+// applicationId);
+// }
