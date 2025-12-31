@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-//@CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
+// @CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
 @RequestMapping("/api/piv-details")
 public class PivDetailController {
 
@@ -20,12 +20,22 @@ public class PivDetailController {
         this.pivDetailService = pivDetailService;
     }
 
-//    @GetMapping("/by-estimate/{estimateNo}")
-//    public ResponseEntity<List<PivDetailDto>> getPivDetailsForEstimate(@PathVariable String estimateNo) {
-//        return ResponseEntity.ok(pivDetailService.getPivDetailsForEstimate(estimateNo));
-//    }
-@GetMapping("/by-estimate")
-public ResponseEntity<List<PivDetailDto>> getPivDetailsForEstimate(@RequestParam String estimateNo) {
-    return ResponseEntity.ok(pivDetailService.getPivDetailsForEstimate(estimateNo));
-}
+    // @GetMapping("/by-estimate/{estimateNo}")
+    // public ResponseEntity<List<PivDetailDto>>
+    // getPivDetailsForEstimate(@PathVariable String estimateNo) {
+    // return
+    // ResponseEntity.ok(pivDetailService.getPivDetailsForEstimate(estimateNo));
+    // }
+
+    // @GetMapping("/by-estimate")
+    // public ResponseEntity<List<PivDetailDto>>
+    // getPivDetailsForEstimate(@RequestParam String estimateNo) {
+    // return
+    // ResponseEntity.ok(pivDetailService.getPivDetailsForEstimate(estimateNo));
+    // }
+
+    @GetMapping("/by-estimate/{estimateNo}")
+    public ResponseEntity<List<PivDetailDto>> getPivDetailsForEstimate(@PathVariable String estimateNo) {
+        return ResponseEntity.ok(pivDetailService.getPivDetailsForEstimate(estimateNo));
+    }
 }

@@ -19,7 +19,8 @@ public class DeptTypeMenu implements Serializable {
     @JoinColumn(name = "DEPT_TYPE_CODE", referencedColumnName = "DEPT_TYPE_CODE", insertable = false, updatable = false)
     private DeptType deptTypeEntity;
 
-    public DeptTypeMenu() {}
+    public DeptTypeMenu() {
+    }
 
     public DeptTypeMenuId getId() {
         return id;

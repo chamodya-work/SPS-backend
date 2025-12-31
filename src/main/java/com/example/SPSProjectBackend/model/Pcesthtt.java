@@ -8,12 +8,18 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @Entity
 @Table(name = "PCESTHTT")
 public class Pcesthtt {
+
     @EmbeddedId
     private PcesthttId id;
 
@@ -25,6 +31,8 @@ public class Pcesthtt {
 
     @Column(name = "PARTIAL_PMT")
     private Boolean partialPmt;
+    @Column(name = "PARTIAL_PMT", length = 255)
+    private String partialPmt;
 
     @Column(name = "PART_PCNT")
     private Long partPcnt;
@@ -40,6 +48,8 @@ public class Pcesthtt {
 
     @Column(name = "SUB_CONT")
     private Boolean subCont;
+    @Column(name = "SUB_CONT", length = 255)
+    private String subCont;
 
     @Column(name = "CONT_NO", length = 20)
     private String contNo;
@@ -82,6 +92,7 @@ public class Pcesthtt {
 
     @Column(name = "ETIMATE_DT", nullable = false)
     private LocalDate etimateDt;
+    private LocalDateTime etimateDt;
 
     @Column(name = "ACTUAL_UNITS")
     private Long actualUnits;
@@ -97,12 +108,15 @@ public class Pcesthtt {
 
     @Column(name = "CONTROLLED")
     private Boolean controlled;
+    @Column(name = "CONTROLLED", length = 255)
+    private String controlled;
 
     @Column(name = "CLIENT_NM", length = 100)
     private String clientNm;
 
     @Column(name = "PRIORITY")
     private Boolean priority;
+    private Long priority;
 
     @Column(name = "CUST_CONTRIB")
     private Long custContrib;
@@ -130,54 +144,69 @@ public class Pcesthtt {
 
     @Column(name = "LOG_ID")
     private Integer logId;
+    private Long normDefault;
+
+    @Column(name = "STATUS")
+    private Long status;
+
+    @Column(name = "LOG_ID")
+    private Long logId;
 
     @Column(name = "ENT_BY", length = 12)
     private String entBy;
 
     @Column(name = "ENT_DT", nullable = false)
     private LocalDate entDt;
+    private LocalDateTime entDt;
 
     @Column(name = "CONF_BY", length = 12)
     private String confBy;
 
     @Column(name = "CONF_DT", nullable = false)
     private LocalDate confDt;
+    private LocalDateTime confDt;
 
     @Column(name = "APR_UID1", length = 12)
     private String aprUid1;
 
     @Column(name = "APR_DT1", nullable = false)
     private LocalDate aprDt1;
+    private LocalDateTime aprDt1;
 
     @Column(name = "APR_UID2", length = 12)
     private String aprUid2;
 
     @Column(name = "APR_DT2", nullable = false)
     private LocalDate aprDt2;
+    private LocalDateTime aprDt2;
 
     @Column(name = "APR_UID3", length = 12)
     private String aprUid3;
 
     @Column(name = "APR_DT3", nullable = false)
     private LocalDate aprDt3;
+    private LocalDateTime aprDt3;
 
     @Column(name = "APR_UID4", length = 12)
     private String aprUid4;
 
     @Column(name = "APR_DT4", nullable = false)
     private LocalDate aprDt4;
+    private LocalDateTime aprDt4;
 
     @Column(name = "APR_UID5", length = 12)
     private String aprUid5;
 
     @Column(name = "APR_DT5", nullable = false)
     private LocalDate aprDt5;
+    private LocalDateTime aprDt5;
 
     @Column(name = "REJCT_UID", length = 12)
     private String rejctUid;
 
     @Column(name = "REJCT_DT", nullable = false)
     private LocalDate rejctDt;
+    private LocalDateTime rejctDt;
 
     @Column(name = "REVISE_EST")
     private Long reviseEst;
@@ -190,6 +219,7 @@ public class Pcesthtt {
 
     @Column(name = "REVISE_DT", nullable = false)
     private LocalDate reviseDt;
+    private LocalDateTime reviseDt;
 
     @Column(name = "REV_REASON", length = 300)
     private String revReason;
@@ -199,6 +229,7 @@ public class Pcesthtt {
 
     @Column(name = "PRJ_ASS_DT")
     private LocalDate prjAssDt;
+    private LocalDateTime prjAssDt;
 
     @Column(name = "REJECT_REASON", length = 800)
     private String rejectReason;

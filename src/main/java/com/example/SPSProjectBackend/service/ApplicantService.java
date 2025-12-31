@@ -1,7 +1,5 @@
 package com.example.SPSProjectBackend.service;
 
-
-
 import com.example.SPSProjectBackend.dto.ApplicantDTO;
 import com.example.SPSProjectBackend.model.Applicant;
 import com.example.SPSProjectBackend.model.Pcesthmt;
@@ -27,9 +25,8 @@ public class ApplicantService {
     @Autowired
     private PcesthmtRepository pcesthmtRepository;
 
-    @Autowired  // New: Inject ApplicationRepository
+    @Autowired // New: Inject ApplicationRepository
     private ApplicationRepository applicationRepository;
-
 
     // UPDATED: Improved method with better error handling and logging
     public List<ApplicantDTO> getApplicantsByEstimateNo(String estimateNo) {
@@ -80,10 +77,6 @@ public class ApplicantService {
             return Collections.emptyList();
         }
     }
-
-
-
-
 
     @Transactional
     public Applicant saveApplicant(Applicant applicant) {
@@ -175,8 +168,9 @@ public class ApplicantService {
 
     // Get applicant by ID
     public Optional<ApplicantDTO> getApplicantById(String idNo) {
-//      Optional<Applicant> applicant = applicantRepository.findById(String.valueOf(Integer.valueOf(idNo)));
-//       return applicant.map(this::convertToDTO);
+        // Optional<Applicant> applicant =
+        // applicantRepository.findById(String.valueOf(Integer.valueOf(idNo)));
+        // return applicant.map(this::convertToDTO);
         // return applicantRepository.findByIdNo(idNo);
         try {
             Long applicantId = Long.parseLong(idNo);
@@ -200,13 +194,10 @@ public class ApplicantService {
         return applicant.map(this::convertToDTO);
     }
 
-
-
     // Delete applicant
     public void deleteApplicant(String idNo) {
         applicantRepository.deleteById(String.valueOf(Integer.valueOf(idNo)));
     }
-
 
     // Update applicant details
     public ApplicantDTO updateApplicant(String idNo, ApplicantDTO applicantDTO) {
@@ -255,35 +246,33 @@ public class ApplicantService {
         }
     }
 
-    //for commissioning
+    // for commissioning
 
     // ApplicantService.java
-//    public List<ApplicantDTO> getApplicantsByDeptId(String deptId) {
-//        List<Applicant> applicants = applicantRepository.findByDeptId(deptId);
-//        return applicants.stream()
-//                .map(this::convertToDTO)
-//                .collect(Collectors.toList());
-//    }
+    // public List<ApplicantDTO> getApplicantsByDeptId(String deptId) {
+    // List<Applicant> applicants = applicantRepository.findByDeptId(deptId);
+    // return applicants.stream()
+    // .map(this::convertToDTO)
+    // .collect(Collectors.toList());
+    // }
 
-    //this is for testing purpose of commission applicant
+    // this is for testing purpose of commission applicant
 
-
-
-//    this is old method for the get findApplicantIdNosByEstimateNo(estimateNo) but in here they used applicationRepository but we have to
-//    use applicantRepositoary
-//    public List<ApplicantDTO> getApplicantsByEstimateNo(String estimateNo) {
-//        List<String> idNos = applicationRepository.findApplicantIdNosByEstimateNo(estimateNo);
-//        if (idNos.isEmpty()) {
-//            return Collections.emptyList();
-//        }
-//        List<Applicant> applicants = new ArrayList<>();
-//        for (String idNo : idNos) {
-//            applicantRepository.findByIdNo(idNo).ifPresent(applicants::add);
-//        }
-//        return applicants.stream().map(this::convertToDTO).collect(Collectors.toList());
-//    }
-
-
-
+    // this is old method for the get findApplicantIdNosByEstimateNo(estimateNo) but
+    // in here they used applicationRepository but we have to
+    // use applicantRepositoary
+    // public List<ApplicantDTO> getApplicantsByEstimateNo(String estimateNo) {
+    // List<String> idNos =
+    // applicationRepository.findApplicantIdNosByEstimateNo(estimateNo);
+    // if (idNos.isEmpty()) {
+    // return Collections.emptyList();
+    // }
+    // List<Applicant> applicants = new ArrayList<>();
+    // for (String idNo : idNos) {
+    // applicantRepository.findByIdNo(idNo).ifPresent(applicants::add);
+    // }
+    // return
+    // applicants.stream().map(this::convertToDTO).collect(Collectors.toList());
+    // }
 
 }

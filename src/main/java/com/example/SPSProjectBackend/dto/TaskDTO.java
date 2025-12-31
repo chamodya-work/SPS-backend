@@ -1,6 +1,10 @@
 package com.example.SPSProjectBackend.dto;
 
+import lombok.Getter;
+import lombok.Setter;
 
+@Setter
+@Getter
 public class TaskDTO {
     private String menuCode;
     private String activityCode;
@@ -12,10 +16,27 @@ public class TaskDTO {
         this.activityName = activityName;
     }
 
-    public String getMenuCode() { return menuCode; }
-    public void setMenuCode(String menuCode) { this.menuCode = menuCode; }
-    public String getActivityCode() { return activityCode; }
-    public void setActivityCode(String activityCode) { this.activityCode = activityCode; }
-    public String getActivityName() { return activityName; }
-    public void setActivityName(String activityName) { this.activityName = activityName; }
+    public String getMenuCode() {
+        return menuCode;
+    }
+
+    public void setMenuCode(String menuCode) {
+        this.menuCode = menuCode;
+    }
+
+    public String getActivityCode() {
+        return activityCode;
+    }
+
+    public void setActivityCode(String activityCode) {
+        this.activityCode = activityCode;
+    }
+
+    public String getActivityName() {
+        return activityName;
+    }
+
+    public void setActivityName(String activityName) {
+        this.activityName = activityName;
+    }
 }

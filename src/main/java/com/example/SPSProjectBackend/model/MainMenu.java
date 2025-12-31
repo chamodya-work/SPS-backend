@@ -1,6 +1,5 @@
 package com.example.SPSProjectBackend.model;
 
-
 import jakarta.persistence.*;
 import java.io.Serializable;
 
@@ -24,7 +23,6 @@ public class MainMenu implements Serializable {
 
     public MainMenu() {
     }
-
 
     public String getMenuCode() {
         return menuCode;

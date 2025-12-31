@@ -193,7 +193,6 @@
 //    }
 //}
 
-
 ////NEW UPDATED CODES
 //package com.example.SPSProjectBackend.service;
 //
@@ -272,7 +271,6 @@
 //        return user;
 //    }
 //}
-
 
 ////NEW UPATED CODES 2
 //
@@ -361,8 +359,6 @@
 //    }
 //}
 
-
-
 // NEW UPDATED CODES 3 - SaUserService.java
 // Changes:
 // 1. Fixed logger statement: Previously, logger.info was logging the userOptional object instead of the userId. Changed to log the normalized userId.
@@ -405,10 +401,11 @@ public class SaUserService {
         }
 
         String normalizedUserId = userId.trim().toUpperCase();
-        logger.info("Attempting login for userId: {}", normalizedUserId);  // FIXED: Log normalized userId instead of userOptional
+        logger.info("Attempting login for userId: {}", normalizedUserId); // FIXED: Log normalized userId instead of
+                                                                          // userOptional
 
         Optional<SaUser> userOptional = saUserRepository.findByUserId(normalizedUserId);
-        logger.debug("User optional: {}", userOptional);  // Existing debug log
+        logger.debug("User optional: {}", userOptional); // Existing debug log
 
         if (userOptional.isPresent()) {
             SaUser user = userOptional.get();
@@ -429,22 +426,32 @@ public class SaUserService {
                         throw new RuntimeException("User account has expired on " + expiryDate);
                     }
                 } catch (Exception dateException) {
-                    logger.warn("Warning: Could not parse expiry date for user {}, allowing login. Error: {}", normalizedUserId, dateException.getMessage());  // CHANGED: Log warning and allow login instead of throwing
+                    logger.warn("Warning: Could not parse expiry date for user {}, allowing login. Error: {}",
+                            normalizedUserId, dateException.getMessage()); // CHANGED: Log warning and allow login
+                                                                           // instead of throwing
                     logger.debug("Raw expiry date: {}", user.getExpiryDate());
                 }
             }
 
             try {
-                boolean isValid = encryption.validateLogin(normalizedUserId, password, user.getPassword());  // CHANGED: Pass normalizedUserId for consistency
+                boolean isValid = encryption.validateLogin(normalizedUserId, password, user.getPassword()); // CHANGED:
+                                                                                                            // Pass
+                                                                                                            // normalizedUserId
+                                                                                                            // for
+                                                                                                            // consistency
                 if (!isValid) {
                     throw new RuntimeException("Invalid password");
                 }
             } catch (Exception e) {
-                logger.error("Error validating password for user {}: {}", normalizedUserId, e.getMessage());  // ADDED: More logging for errors
+                logger.error("Error validating password for user {}: {}", normalizedUserId, e.getMessage()); // ADDED:
+                                                                                                             // More
+                                                                                                             // logging
+                                                                                                             // for
+                                                                                                             // errors
                 throw new RuntimeException("Error validating password: " + e.getMessage());
             }
 
-            logger.info("Successful login for user: {}", normalizedUserId);  // ADDED: Log successful login
+            logger.info("Successful login for user: {}", normalizedUserId); // ADDED: Log successful login
             return user;
 
         } else {

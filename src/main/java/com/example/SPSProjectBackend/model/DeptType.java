@@ -1,6 +1,5 @@
 package com.example.SPSProjectBackend.model;
 
-
 import jakarta.persistence.*;
 import java.io.Serializable;
 
@@ -16,12 +15,16 @@ public class DeptType implements Serializable {
     @Column(name = "NAME", length = 100)
     private String name;
 
-    public DeptType() {}
+    public DeptType() {
+    }
 
-    public String getDeptTypeCode() { return deptTypeCode; }
+    public String getDeptTypeCode() {
+        return deptTypeCode;
+    }
 
-
-    public void setDeptTypeCode(String deptTypeCode) { this.deptTypeCode = deptTypeCode; }
+    public void setDeptTypeCode(String deptTypeCode) {
+        this.deptTypeCode = deptTypeCode;
+    }
 
     public String getName() {
         return name;

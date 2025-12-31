@@ -32,8 +32,6 @@
 //
 //}
 
-
-
 //package com.example.SPSProjectBackend.dto;
 //
 //import jakarta.persistence.*;
@@ -50,11 +48,10 @@
 //    private String userlevel;
 //}
 
-
-
 //NEW CODE2
 package com.example.SPSProjectBackend.dto;
 
+package com.example.SPSProjectBackend.dto;
 public class LoginRequest {
     private String userId;
     private String email;
@@ -85,3 +82,19 @@ public class LoginRequest {
         this.email = email;
     }
 }
+
+// package com.example.SPSProjectBackend.dto;
+//
+// import jakarta.persistence.*;
+// import lombok.Getter;
+// import lombok.Setter;
+//
+// @Setter
+// @Getter
+// public class LoginRequest {
+//
+// private Long id;
+// private String password;
+// private String email;
+// private String userlevel;
+// }

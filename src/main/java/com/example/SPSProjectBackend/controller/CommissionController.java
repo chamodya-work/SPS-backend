@@ -22,42 +22,46 @@ public class CommissionController {
         this.pcesthmtService = pcesthmtService;
     }
 
-//    @GetMapping("/details")
-//    public ResponseEntity<List<CommissionDTO>> getCommissionDetails() {
-//        List<CommissionDTO> commissionDetails = pcesthmtService.getCommissionDetails();
-//        return ResponseEntity.ok(commissionDetails);
-//    }
-//    //this is get new api for get data related to create ordercard
-//    @GetMapping("/details/user")
-//    public ResponseEntity<List<CommissionDTO>> getCommissionDetailsByUser(
-//            @RequestParam String userId) {
-//        List<CommissionDTO> commissionDetails = pcesthmtService.getCommissionDetailsByUserId(userId);
-//        return ResponseEntity.ok(commissionDetails);
-//    }
-//
-//
-//    //this is for get editing related details
-//    @GetMapping("/details/edit")
-//    public ResponseEntity<List<CommissionDTO>> getEditCommissionDetails() {
-//        List<CommissionDTO> commissionDetails = pcesthmtService.getEditCommissionDetails();
-//        return ResponseEntity.ok(commissionDetails);
-//    }
-//
-//    //this is for get validate related details
-//    @GetMapping("/details/validate")
-//    public ResponseEntity<List<CommissionDTO>> getValidateCommissionDetails() {
-//        List<CommissionDTO> commissionDetails = pcesthmtService.getValidateCommissionDetails();
-//        return ResponseEntity.ok(commissionDetails);
-//    }
-
+    // @GetMapping("/details")
+    // public ResponseEntity<List<CommissionDTO>> getCommissionDetails() {
+    // List<CommissionDTO> commissionDetails =
+    // pcesthmtService.getCommissionDetails();
+    // return ResponseEntity.ok(commissionDetails);
+    // }
+    // //this is get new api for get data related to create ordercard
+    // @GetMapping("/details/user")
+    // public ResponseEntity<List<CommissionDTO>> getCommissionDetailsByUser(
+    // @RequestParam String userId) {
+    // List<CommissionDTO> commissionDetails =
+    // pcesthmtService.getCommissionDetailsByUserId(userId);
+    // return ResponseEntity.ok(commissionDetails);
+    // }
+    //
+    //
+    // //this is for get editing related details
+    // @GetMapping("/details/edit")
+    // public ResponseEntity<List<CommissionDTO>> getEditCommissionDetails() {
+    // List<CommissionDTO> commissionDetails =
+    // pcesthmtService.getEditCommissionDetails();
+    // return ResponseEntity.ok(commissionDetails);
+    // }
+    //
+    // //this is for get validate related details
+    // @GetMapping("/details/validate")
+    // public ResponseEntity<List<CommissionDTO>> getValidateCommissionDetails() {
+    // List<CommissionDTO> commissionDetails =
+    // pcesthmtService.getValidateCommissionDetails();
+    // return ResponseEntity.ok(commissionDetails);
+    // }
 
     // Unified endpoint for getting commission details with dynamic status
     @GetMapping("/details/user/create")
     public ResponseEntity<List<CommissionDTO>> getCommissionDetailsForCreate(
             @RequestParam String userId) {
-        // For create operation,OLD  pass status=4
-        // NOW WE CHANGE TO status=1 because they say they need both physical closed jobs (status=4)
-        //soft closed jobs(status=1)
+        // For create operation,OLD pass status=4
+        // NOW WE CHANGE TO status=1 because they say they need both physical closed
+        // jobs (status=4)
+        // soft closed jobs(status=1)
         List<CommissionDTO> commissionDetails = pcesthmtService.getCommissionDetailsByUserIdAndStatus(userId, 1);
         return ResponseEntity.ok(commissionDetails);
     }
@@ -94,6 +98,9 @@ public class CommissionController {
         return ResponseEntity.ok(commissionDetails);
     }
 
-
-
+    @GetMapping("/details")
+    public ResponseEntity<List<CommissionDTO>> getCommissionDetails() {
+        List<CommissionDTO> commissionDetails = pcesthmtService.getCommissionDetails();
+        return ResponseEntity.ok(commissionDetails);
+    }
 }

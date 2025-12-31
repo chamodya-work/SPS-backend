@@ -17,22 +17,22 @@ import org.springframework.web.bind.annotation.*;
 import com.example.SPSProjectBackend.dto.ApplicationDetailsDTO;
 
 import java.util.Collections;
+
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 @RestController
-//@CrossOrigin(origins = "http://localhost:3000" , allowCredentials = "true")
+// @CrossOrigin(origins = "http://localhost:3000" , allowCredentials = "true")
 @RequestMapping("/api/application")
 public class ApplicationController {
 
-    //This one for application details in commission page
+    // This one for application details in commission page
     @Autowired
     private PcesthmtRepository pcesthmtRepository;
 
     @Autowired
     private ApplicationRepository applicationRepository;
-
 
     @Autowired
     private ApplicationService applicationService;
@@ -59,7 +59,8 @@ public class ApplicationController {
     }
 
     @PostMapping("/save")
-    public ResponseEntity<ApplicationModel> saveApplication(@RequestBody ApplicationDTO applicationDTO, HttpSession session) {
+    public ResponseEntity<ApplicationModel> saveApplication(@RequestBody ApplicationDTO applicationDTO,
+            HttpSession session) {
 
         // Retrieve user details from the session
         String sessionUsername = (String) session.getAttribute("email");
@@ -72,24 +73,27 @@ public class ApplicationController {
         return ResponseEntity.ok(savedApplication);
     }
 
-//    @PutMapping("/update")
-//    public ResponseEntity<?> updateApplication(
-//            @RequestParam String applicationId,
-//            @RequestBody ApplicationDTO applicationDTO,
-//            HttpSession session) {
-//
-//        String sessionUsername = (String) session.getAttribute("username");
-//        if (sessionUsername == null) {
-//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User is not logged in.");
-//        }
-//
-//        try {
-//            ApplicationModel updatedApplication = applicationService.updateApplication(applicationId, applicationDTO, sessionUsername);
-//            return ResponseEntity.ok(updatedApplication);
-//        } catch (EntityNotFoundException e) {
-//            return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
-//        }
-//    }
+    // @PutMapping("/update")
+    // public ResponseEntity<?> updateApplication(
+    // @RequestParam String applicationId,
+    // @RequestBody ApplicationDTO applicationDTO,
+    // HttpSession session) {
+    //
+    // String sessionUsername = (String) session.getAttribute("username");
+    // if (sessionUsername == null) {
+    // return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("User is not
+    // logged in.");
+    // }
+    //
+    // try {
+    // ApplicationModel updatedApplication =
+    // applicationService.updateApplication(applicationId, applicationDTO,
+    // sessionUsername);
+    // return ResponseEntity.ok(updatedApplication);
+    // } catch (EntityNotFoundException e) {
+    // return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+    // }
+    // }
 
     @PatchMapping("/update")
     public ResponseEntity<?> updateApplication(
@@ -104,13 +108,13 @@ public class ApplicationController {
         }
 
         try {
-            ApplicationModel updatedApplication = applicationService.updateApplication(applicationId, applicationDTO, sessionUsername);
+            ApplicationModel updatedApplication = applicationService.updateApplication(applicationId, applicationDTO,
+                    sessionUsername);
             return ResponseEntity.ok(updatedApplication);
         } catch (EntityNotFoundException e) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
         }
     }
-
 
     @GetMapping("/search")
     public ResponseEntity<?> getApplicationById(@RequestParam String applicationId) {
@@ -119,16 +123,13 @@ public class ApplicationController {
                 .orElseGet(() -> ResponseEntity.notFound().build());
     }
 
-
-
     @GetMapping("/status/{deptId}")
     public List<Map<String, Object>> getStatusSummaryByDept(@PathVariable String deptId) {
         return applicationService.getStatusCounts(deptId);
     }
 
-    //This one for application details in commission page
+    // This one for application details in commission page
     // ApplicationController.java
-
 
     // ApplicationController.java
     @GetMapping("/details")
@@ -144,11 +145,18 @@ public class ApplicationController {
             }
             return ResponseEntity.ok(details);
         } catch (Exception e) {
-            System.err.println("Error fetching application details for estimateNo: " + estimateNo + ", Error: " + e.getMessage());
+            System.err.println(
+                    "Error fetching application details for estimateNo: " + estimateNo + ", Error: " + e.getMessage());
             e.printStackTrace();
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR)
                     .body(Collections.emptyList());
         }
     }
 
+    @GetMapping("/by-estimate/{estimateNo}")
+    public ResponseEntity<List<ApplicationModel>> getApplicationsForEstimate(
+            @PathVariable String estimateNo) {
+        List<ApplicationModel> applications = applicationService.getApplicationsForEstimate(estimateNo);
+        return ResponseEntity.ok(applications);
+    }
 }

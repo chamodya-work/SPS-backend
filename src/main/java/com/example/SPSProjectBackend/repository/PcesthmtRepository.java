@@ -97,9 +97,12 @@ public interface PcesthmtRepository extends JpaRepository<Pcesthmt, String> {
     // Unified repository method that accepts both userId and status as parameters
     // This replaces multiple methods (findCommissionDetailsByUserId, findEditCommissionDetails, findValidateCommissionDetails)
     // with a single flexible method
+//     @Query(value =
+//             "SELECT " +
+//                     "p.PROJECT_NO AS projectNo, " +
+//     // Add this method to your existing repository
     @Query(value =
             "SELECT " +
-                    "p.PROJECT_NO AS projectNo, " +
                     "p.ESTIMATE_NO AS estimateNo, " +
                     "p.STD_COST AS totalCost, " +
                     "p.DEPT_ID AS deptId, " +
@@ -127,4 +130,14 @@ public interface PcesthmtRepository extends JpaRepository<Pcesthmt, String> {
     void updateStatusByEstimateNoAndDeptId(@Param("estimateNo") String estimateNo,
                                            @Param("deptId") String deptId,
                                            @Param("status") Short status);
+                    "FROM dacons12.PCESTHMT p " +
+                    "WHERE p.STATUS = 4 " +
+                    "ORDER BY p.ESTIMATE_NO, p.DEPT_ID",
+            nativeQuery = true)
+    List<CommissionDTO> findCommissionDetails();
+    //this is for testing purpose of commission applicant
+    // PcesthmtRepository.java
+
+    @Query("SELECT DISTINCT CAST(p.id.deptId AS string) FROM Pcesthmt p WHERE p.id.estimateNo = :estimateNo")
+    List<String> findDeptIdsByEstimateNo(@Param("estimateNo") String estimateNo);
 }

@@ -1,6 +1,5 @@
 package com.example.SPSProjectBackend.controller;
 
-
 import com.example.SPSProjectBackend.dto.LoginResponseDTO;
 import com.example.SPSProjectBackend.dto.MainMenuDTO;
 import com.example.SPSProjectBackend.dto.TaskDTO;
@@ -9,6 +8,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.Collections;
+import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
@@ -37,6 +37,7 @@ public class LoginController {
 
     // Add this endpoint to LoginController.java
     @GetMapping("/dept-type")
+
     public ResponseEntity<?> getDeptTypeByDeptId(@RequestParam String deptId) {
         if (deptId == null || deptId.trim().isEmpty()) {
             return ResponseEntity.badRequest().body("Department ID is required");
@@ -50,7 +51,5 @@ public class LoginController {
 
         return ResponseEntity.ok(Collections.singletonMap("deptType", deptType));
     }
-
-
 
 }

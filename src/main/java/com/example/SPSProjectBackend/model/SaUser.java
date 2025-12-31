@@ -333,8 +333,6 @@
 //    }
 //}
 
-
-
 ////NEW UPDATED CODES
 //package com.example.SPSProjectBackend.model;
 //
@@ -435,7 +433,7 @@ package com.example.SPSProjectBackend.model;
 
 import jakarta.persistence.*;
 
-import java.util.Date;  // Changed: Imported java.util.Date instead of java.time.LocalDate for consistency
+import java.util.Date; // Changed: Imported java.util.Date instead of java.time.LocalDate for consistency
 
 @Entity
 @Table(name = "SAUSERM")
@@ -476,7 +474,8 @@ public class SaUser {
     private String pswrdHint;
 
     @Column(name = "CHANGE_DT", nullable = false)
-    private Date changeDt;  // Changed: From LocalDate to Date for consistency with database timestamp fields and other date fields like expiryDate
+    private Date changeDt; // Changed: From LocalDate to Date for consistency with database timestamp
+                           // fields and other date fields like expiryDate
 
     @Column(name = "VALID_PRD")
     private Short validPrd;
@@ -506,19 +505,22 @@ public class SaUser {
     private String entBy;
 
     @Column(name = "ENT_DT", nullable = false)
-    private Date entDt;  // Changed: From LocalDate to Date for consistency with database timestamp fields
+    private Date entDt; // Changed: From LocalDate to Date for consistency with database timestamp
+                        // fields
 
     @Column(name = "MODI_BY", length = 12)
     private String modiBy;
 
     @Column(name = "MODI_DT", nullable = false)
-    private Date modiDt;  // Changed: From LocalDate to Date for consistency with database timestamp fields
+    private Date modiDt; // Changed: From LocalDate to Date for consistency with database timestamp
+                         // fields
 
     @Column(name = "CONF_BY", length = 12)
     private String confBy;
 
     @Column(name = "CONF_DT", nullable = false)
-    private Date confDt;  // Changed: From LocalDate to Date for consistency with database timestamp fields
+    private Date confDt; // Changed: From LocalDate to Date for consistency with database timestamp
+                         // fields
 
     @Column(name = "EPFNO", length = 15)
     private String epfno;
@@ -554,11 +556,11 @@ public class SaUser {
         this.epfno = epfno;
     }
 
-    public Date getConfDt() {  // Changed: Return type from LocalDate to Date
+    public Date getConfDt() { // Changed: Return type from LocalDate to Date
         return confDt;
     }
 
-    public void setConfDt(Date confDt) {  // Changed: Parameter type from LocalDate to Date
+    public void setConfDt(Date confDt) { // Changed: Parameter type from LocalDate to Date
         this.confDt = confDt;
     }
 
@@ -570,11 +572,11 @@ public class SaUser {
         this.confBy = confBy;
     }
 
-    public Date getModiDt() {  // Changed: Return type from LocalDate to Date
+    public Date getModiDt() { // Changed: Return type from LocalDate to Date
         return modiDt;
     }
 
-    public void setModiDt(Date modiDt) {  // Changed: Parameter type from LocalDate to Date
+    public void setModiDt(Date modiDt) { // Changed: Parameter type from LocalDate to Date
         this.modiDt = modiDt;
     }
 
@@ -586,11 +588,11 @@ public class SaUser {
         this.modiBy = modiBy;
     }
 
-    public Date getEntDt() {  // Changed: Return type from LocalDate to Date
+    public Date getEntDt() { // Changed: Return type from LocalDate to Date
         return entDt;
     }
 
-    public void setEntDt(Date entDt) {  // Changed: Parameter type from LocalDate to Date
+    public void setEntDt(Date entDt) { // Changed: Parameter type from LocalDate to Date
         this.entDt = entDt;
     }
 
@@ -666,11 +668,11 @@ public class SaUser {
         this.validPrd = validPrd;
     }
 
-    public Date getChangeDt() {  // Changed: Return type from LocalDate to Date
+    public Date getChangeDt() { // Changed: Return type from LocalDate to Date
         return changeDt;
     }
 
-    public void setChangeDt(Date changeDt) {  // Changed: Parameter type from LocalDate to Date
+    public void setChangeDt(Date changeDt) { // Changed: Parameter type from LocalDate to Date
         this.changeDt = changeDt;
     }
 

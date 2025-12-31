@@ -105,11 +105,13 @@ public class ApplicationModel {
     @Column(name = "FINALIZED_WITHIN")
     private Short finalizedWithin;
 
-//    @Column(name = "IS_LOAN_APP")
-//    private Boolean isLoanApp;
+    // @Column(name = "IS_LOAN_APP")
+    // private Boolean isLoanApp;
 
     @Column(name = "IS_LOAN_APP", length = 3)
     private String isLoanApp;
+    // @Column(name = "IS_LOAN_APP")
+    // private Boolean isLoanApp;
 
     @Column(name = "IS_VISITNG_NEEDED")
     private Boolean isVisitngNeeded;

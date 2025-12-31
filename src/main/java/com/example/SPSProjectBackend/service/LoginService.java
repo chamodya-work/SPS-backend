@@ -1,6 +1,5 @@
 package com.example.SPSProjectBackend.service;
 
-
 import com.example.SPSProjectBackend.dto.LoginBranchInfoDTO;
 import com.example.SPSProjectBackend.dto.LoginResponseDTO;
 import com.example.SPSProjectBackend.dto.MainMenuDTO;
@@ -87,53 +86,55 @@ public class LoginService {
 }
 
 //// Backend/sps/src/main/java/com/it/sps/service/LoginService.java
-//package com.it.sps.service;
+// package com.it.sps.service;
 //
-//import com.it.sps.dto.LoginBranchInfoDTO;
-//import com.it.sps.dto.LoginResponseDTO;
-//import com.it.sps.repository.LoginRepository;
-//import com.it.sps.repository.GldeptinRepository;
-//import org.springframework.stereotype.Service;
-//import java.util.List;
+// import com.it.sps.dto.LoginBranchInfoDTO;
+// import com.it.sps.dto.LoginResponseDTO;
+// import com.it.sps.repository.LoginRepository;
+// import com.it.sps.repository.GldeptinRepository;
+// import org.springframework.stereotype.Service;
+// import java.util.List;
 //
-//@Service
-//public class LoginService {
-//    private final LoginRepository loginRepository;
-//    private final GldeptinRepository gldeptinRepository; // Add this line
+// @Service
+// public class LoginService {
+// private final LoginRepository loginRepository;
+// private final GldeptinRepository gldeptinRepository; // Add this line
 //
-//    public LoginService(LoginRepository loginRepository, GldeptinRepository gldeptinRepository) { // Update constructor
-//        this.loginRepository = loginRepository;
-//        this.gldeptinRepository = gldeptinRepository;
-//    }
+// public LoginService(LoginRepository loginRepository, GldeptinRepository
+//// gldeptinRepository) { // Update constructor
+// this.loginRepository = loginRepository;
+// this.gldeptinRepository = gldeptinRepository;
+// }
 //
-//    public LoginResponseDTO getLoginInfo(String userId) {
-//        String trimmedUserId = userId.trim();
-//        System.out.println("Input userId: " + trimmedUserId);
+// public LoginResponseDTO getLoginInfo(String userId) {
+// String trimmedUserId = userId.trim();
+// System.out.println("Input userId: " + trimmedUserId);
 //
-//        String userLevel = null;
-//        System.out.println("Fetched userLevel: " + userLevel);
+// String userLevel = null;
+// System.out.println("Fetched userLevel: " + userLevel);
 //
-//        List<LoginBranchInfoDTO> branchInfoList = null;
-//        String deptId = null;
-//        System.out.println("Fetched deptId: " + deptId);
-//        String message = null;
+// List<LoginBranchInfoDTO> branchInfoList = null;
+// String deptId = null;
+// System.out.println("Fetched deptId: " + deptId);
+// String message = null;
 //
-//        try {
-//            userLevel = loginRepository.findUserLevelByUserId(trimmedUserId);
-//            System.out.println("Fetched userLevel for userId " + trimmedUserId + ": " + userLevel);
+// try {
+// userLevel = loginRepository.findUserLevelByUserId(trimmedUserId);
+// System.out.println("Fetched userLevel for userId " + trimmedUserId + ": " +
+//// userLevel);
 //
-//            branchInfoList = loginRepository.getLoginBranchInfo(trimmedUserId);
-//            deptId = gldeptinRepository.findDeptIdByRptUser(trimmedUserId);
+// branchInfoList = loginRepository.getLoginBranchInfo(trimmedUserId);
+// deptId = gldeptinRepository.findDeptIdByRptUser(trimmedUserId);
 //
-//            if (branchInfoList.isEmpty()) {
-//                message = "No branch data found for DEPT_ID: " + deptId;
-//            }
-//        } catch (Exception e) {
-//            System.out.println("Exception in getLoginInfo: " + e.getMessage());
-//            e.printStackTrace();
-//            message = "Error fetching login info: " + e.getMessage();
-//        }
+// if (branchInfoList.isEmpty()) {
+// message = "No branch data found for DEPT_ID: " + deptId;
+// }
+// } catch (Exception e) {
+// System.out.println("Exception in getLoginInfo: " + e.getMessage());
+// e.printStackTrace();
+// message = "Error fetching login info: " + e.getMessage();
+// }
 //
-//        return new LoginResponseDTO(userLevel, branchInfoList, deptId, message);
-//    }
-//}
+// return new LoginResponseDTO(userLevel, branchInfoList, deptId, message);
+// }
+// }

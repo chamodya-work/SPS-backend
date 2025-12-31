@@ -4,7 +4,18 @@ package com.example.SPSProjectBackend.dto;
 
 import java.math.BigDecimal;
 
+// public class EstimateDetailsDTO {
+package com.example.SPSProjectBackend.dto;
+
+import lombok.Getter;
+import lombok.Setter;
+
+import java.math.BigDecimal;
+
+@Setter
+@Getter
 public class EstimateDetailsDTO {
+    // Getters and Setters
     private Double secdeposit;
     private Double cebcost;
     private Double rebateCost;
@@ -15,27 +26,67 @@ public class EstimateDetailsDTO {
     private BigDecimal demand;
 
     // Getters and Setters
-    public Double getSecdeposit() { return secdeposit; }
-    public void setSecdeposit(Double secdeposit) { this.secdeposit = secdeposit; }
+    public Double getSecdeposit() {
+        return secdeposit;
+    }
 
-    public Double getCebcost() { return cebcost; }
-    public void setCebcost(Double cebcost) { this.cebcost = cebcost; }
+    public void setSecdeposit(Double secdeposit) {
+        this.secdeposit = secdeposit;
+    }
 
-    public Double getRebateCost() { return rebateCost; }
-    public void setRebateCost(Double rebateCost) { this.rebateCost = rebateCost; }
+    public Double getCebcost() {
+        return cebcost;
+    }
 
-    public Double getVatcost() { return vatcost; }
-    public void setVatcost(Double vatcost) { this.vatcost = vatcost; }
+    public void setCebcost(Double cebcost) {
+        this.cebcost = cebcost;
+    }
 
-    public Double getNbtcost() { return nbtcost; }
-    public void setNbtcost(Double nbtcost) { this.nbtcost = nbtcost; }
+    public Double getRebateCost() {
+        return rebateCost;
+    }
 
-    public Double getSctcost() { return sctcost; }
-    public void setSctcost(Double sctcost) { this.sctcost = sctcost; }
+    public void setRebateCost(Double rebateCost) {
+        this.rebateCost = rebateCost;
+    }
 
-    public Double getToconpay() { return toconpay; }
-    public void setToconpay(Double toconpay) { this.toconpay = toconpay; }
+    public Double getVatcost() {
+        return vatcost;
+    }
 
-    public BigDecimal getDemand() { return demand; }
-    public void setDemand(BigDecimal demand) { this.demand = demand; }
+    public void setVatcost(Double vatcost) {
+        this.vatcost = vatcost;
+    }
+
+    public Double getNbtcost() {
+        return nbtcost;
+    }
+
+    public void setNbtcost(Double nbtcost) {
+        this.nbtcost = nbtcost;
+    }
+
+    public Double getSctcost() {
+        return sctcost;
+    }
+
+    public void setSctcost(Double sctcost) {
+        this.sctcost = sctcost;
+    }
+
+    public Double getToconpay() {
+        return toconpay;
+    }
+
+    public void setToconpay(Double toconpay) {
+        this.toconpay = toconpay;
+    }
+
+    public BigDecimal getDemand() {
+        return demand;
+    }
+
+    public void setDemand(BigDecimal demand) {
+        this.demand = demand;
+    }
 }

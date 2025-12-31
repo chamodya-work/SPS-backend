@@ -1,7 +1,5 @@
 package com.example.SPSProjectBackend.controller;
 
-
-
 import com.example.SPSProjectBackend.model.StandardRates;
 import com.example.SPSProjectBackend.service.StandardRatesService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,4 +41,3 @@ public class StandardRatesController {
         service.delete(id);
     }
 }
-

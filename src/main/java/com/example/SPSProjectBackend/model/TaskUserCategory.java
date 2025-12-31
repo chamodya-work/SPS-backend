@@ -1,6 +1,5 @@
 package com.example.SPSProjectBackend.model;
 
-
 import jakarta.persistence.*;
 import java.io.Serializable;
 
@@ -21,7 +20,6 @@ public class TaskUserCategory implements Serializable {
     @Column(name = "ACTIVITY_CODE", length = 20, nullable = false)
     private String activityCode;
 
-
     @ManyToOne
     @JoinColumn(name = "USER_ROLE_CODE", referencedColumnName = "USER_ID", insertable = false, updatable = false)
     private UserCategory userCategory;
@@ -34,7 +32,8 @@ public class TaskUserCategory implements Serializable {
     @JoinColumn(name = "ACTIVITY_CODE", referencedColumnName = "ACTIVITY_CODE", insertable = false, updatable = false)
     private Task task;
 
-    public TaskUserCategory() {}
+    public TaskUserCategory() {
+    }
 
     public String getUserRoleCode() {
         return userRoleCode;
@@ -76,7 +75,11 @@ public class TaskUserCategory implements Serializable {
         this.mainMenu = mainMenu;
     }
 
-    public Task getTask() { return task; }
+    public Task getTask() {
+        return task;
+    }
 
-    public void setTask(Task task) { this.task = task; }
+    public void setTask(Task task) {
+        this.task = task;
+    }
 }
